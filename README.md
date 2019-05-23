@@ -1,5 +1,9 @@
-# telebotDocker
-docker con la libreria pyTelegramBotAPI
-docker build -t telebot .
+# Telegram BOT dockerized
 
-docker run -dit dockertelebot
+Este es un contenedor para crear un bot bajo el proyecto [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI)
+
+## Para probar:
+
+`$ docker build -t telebot .`
+
+`$ docker run -dit dockertelebot`
