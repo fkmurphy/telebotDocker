@@ -10,7 +10,7 @@ Este es un contenedor para crear un bot bajo el proyecto [pyTelegramBotAPI](http
 
 **Crear un contendor**
 
-`$ docker run -dit dockertelebot`
+`$ docker run --name telebot -e APIKEY="TUAPIKEY" -dit dockertelebot`
 
 **o sino,**
 

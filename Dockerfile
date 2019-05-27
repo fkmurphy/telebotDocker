@@ -7,18 +7,15 @@ WORKDIR /bot
 RUN apk add git
 
 # Obtener el repositorio de pyTelegramBotAPI
-RUN git clone https://github.com/eternnoir/pyTelegramBotAPI.git
 
-# Iniciar bot
-COPY ./bot.py /bot/bot.py
+COPY ./pyTelegramBotAPI /bot/pyTelegramBotAPI 
 
 # Instalar pyTelegramBotAPI
 RUN cd /bot/pyTelegramBotAPI && \
      python setup.py install
 
-#ADD ./app /bot/app
-# correr el script
-COPY ./entrypoint.sh /bot/entrypoint.sh 
-ENTRYPOINT ["/bot/entrypoint.sh"]
+ADD ./app /bot/app
 
-CMD ["python","bot.py"]
+ENV APIKEY INSERTAR-API-KEY
+
+CMD ["python","./app/bot.py"]
