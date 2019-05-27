@@ -5,11 +5,11 @@ Para programar el BOT, modifique el archivo **bot.py** en la carpeta _app_
 
 ## Para usar:
 
-**Crear la imagen**
+**Si se modifica Dockerfile cree la imagen de la siguiente manera:**
 
 `$ docker build -t docker-telebot .`
 
 **Crear un contendor**
 
-`$ docker run --name telebot -e APIKEY="TUAPIKEY" -dit docker-telebot`
+`$ docker run --name telebot -e APIKEY="TUAPIKEY" -dit fkmurphy/python_telegram_bot`
 
