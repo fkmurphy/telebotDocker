@@ -19,7 +19,7 @@ print ("[System] Bot has started.")
 apiKey = os.environ.get("APIKEY")
 if apiKey == None:
     exit()
-    
+
 bt = telebot.TeleBot(apiKey)
 cmdUserDictionary = {}
 
@@ -167,9 +167,9 @@ def derivar(m,status):
                 print(r.json())
                 cid = m.chat.id
                 json=r.json()
-
+                
                 # si la respuesta es una url de archvio:
-                if ('urlFile' in json and json['urlFile'] != "" ):
+                if ('urlFile' in json and json['urlFile'] != "" and json['mensaje'] == 'EXITO'):
                     file_name = json['urlFile'].split('/')[-1]
                     today = datetime.now().strftime("%d%m%Y_%H%M%S")
                     url = "http://admin.django.curza"+json['urlFile']
@@ -178,14 +178,22 @@ def derivar(m,status):
                         #cmd.wait()
                         #cmd.communicate()
                     if os.path.splitext(file_name)[-1].lower() == '.zip':
-                        os.system("cd /bot/media/ && wget "+url+" -O"+file_name)
+                        try:
+                            os.system("cd /bot/media/ && wget "+url+" -O"+file_name)
+                        except Exception:
+                            if (m.chat.username in cmdUserDictionary):
+                                del cmdUserDictionary[m.chat.username]
+                            bt.reply_to(m, 'Hubo un problema al obtener este archivo '+file_name)
                         bt.send_message(cid,'El archivo '+file_name+' se está enviando')
                         bt.send_document(cid, open('/bot/media/'+file_name, 'rb'))          
                     else:
                         os.system("cd /bot/media/ && wget "+url+" -O"+file_name+today)
                         bt.send_message(cid,'El archivo '+file_name+today+' se está enviando')
                         bt.send_document(cid, open('/bot/media/'+file_name+today, 'rb'))          
-                
+                elif ('urlFile' in json and json['urlFile'] != "" and json['mensaje'] == "ERROR"):
+                    if (m.chat.username in cmdUserDictionary):
+                        del cmdUserDictionary[m.chat.username]
+                    bt.reply_to(m, 'Error, posiblemente el archivo no exista')
                 else:
                     #si la respuesta no es una url de archivo
                     #mensaje = parseJson(r.json())
