@@ -15,7 +15,12 @@ from datetime import datetime
 
 print ("[System] Bot has started.")
 
-bt = telebot.TeleBot("710493136:AAHoHtPJ8ohWEwrUPUjzHLi-U2fdT5swkjQ")
+
+apiKey = os.environ.get("APIKEY")
+if apiKey == None:
+    exit()
+    
+bt = telebot.TeleBot(apiKey)
 cmdUserDictionary = {}
 
 
