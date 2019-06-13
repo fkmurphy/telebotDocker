@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  telebot:
+    build:
+      context: .
+    container_name: telebot
+    volumes: 
+      - ./app:/bot/app
+      - ./media:/bot/media  
+    environment:
+      APIKEY: "710493136:AAHoHtPJ8ohWEwrUPUjzHLi-U2fdT5swkjQ"
+    extra_hosts:
+      - admin.django.curza:192.168.1.70
+     # - admin.django.curza:172.16.0.3
