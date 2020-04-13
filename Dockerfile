@@ -4,7 +4,7 @@ FROM python:3.7-alpine
 WORKDIR /bot
 
 # instalar git
-RUN apk add git
+RUN apk update && apk add git  
 
 # Obtener el repositorio de pyTelegramBotAPI
 
@@ -19,7 +19,9 @@ RUN cd /bot/pyTelegramBotAPI && \
      pipenv install --system
 
 ADD ./app /bot/app
-
+RUN pip install --upgrade pip && \
+	pip install --upgrade setuptools wheel && \ 
+	pip install -r /bot/app/requirements.txt
 ENV APIKEY INSERTAR-API-KEY
 
 ENV PYTHONUNBUFFERED 1

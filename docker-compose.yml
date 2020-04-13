@@ -7,9 +7,10 @@ services:
     container_name: telebot
     volumes: 
       - ./app:/bot/app
-      - ./media:/bot/media  
+    #  - ./media:/bot/media  
     environment:
-      APIKEY: "710493136:AAHoHtPJ8ohWEwrUPUjzHLi-U2fdT5swkjQ"
-    extra_hosts:
-      - admin.django.curza:192.168.1.70
+            #      APIKEY: "710493136:AAHoHtPJ8ohWEwrUPUjzHLi-U2fdT5swkjQ"
+      APIKEY: "839990568:AAEHmZYLB_8WZfjJg0xwoqgF6JpuT3WTr24"
+   #extra_hosts:
+     #  - admin.django.curza:192.168.1.70
      # - admin.django.curza:172.16.0.3
